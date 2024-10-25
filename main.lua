@@ -41,11 +41,13 @@ StarterGui:SetCore("SendNotification", {
     Duration = 10
 })
 
--- ULTIMATE TEXT
-local plr = game.Players.LocalPlayer
-local gui = plr.PlayerGui
-local ulttext = gui.ScreenGui.MagicHealth.TextLabel
-ulttext.Text = "20 SERIES"
+if game.PlaceId == 10449761463 then
+    -- ULTIMATE TEXT
+    local plr = game.Players.LocalPlayer
+    local gui = plr.PlayerGui
+    local ulttext = gui.ScreenGui.MagicHealth.TextLabel
+    ulttext.Text = "20 SERIES"
+end
 
 --KJ SPAWN
 local function playAnimation()
