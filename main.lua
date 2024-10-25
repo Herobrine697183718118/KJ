@@ -284,7 +284,84 @@ end
 
 --SWIFT SWEEP CODE
 if game.PlaceId == 12360882630 then
-    --UNKNOWN
+    local tool = Instance.new("Tool")
+    tool.Name = "Swift Sweep"
+    tool.RequiresHandle = false
+    tool.CanBeDropped = true
+    tool.Parent = game.Players.LocalPlayer.Backpack
+
+    local player = game.Players.LocalPlayer
+
+    tool.Activated:Connect(function()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.WalkSpeed = 10
+
+        -- Play the main animation
+        local anim2 = Instance.new("Animation")
+        anim2.AnimationId = "rbxassetid://16944345619"
+        local playAnim2 = humanoid:LoadAnimation(anim2)
+        playAnim2:Play()
+
+        -- Sound setup
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://16944636115"
+        sound.Volume = 2
+        sound.Parent = player.Character.HumanoidRootPart
+        sound:Play()
+
+        local hitSound = Instance.new("Sound")
+        hitSound.SoundId = "rbxassetid://16944654440"
+        hitSound.Volume = 2
+
+        -- Function to apply damage to the nearest target within range
+        local function applyDamageToNearestTarget()
+            local closestTarget = nil
+            local closestDistance = 5
+
+            for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
+                if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local distance = (character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).Magnitude
+
+                    if distance <= closestDistance then
+                        closestDistance = distance
+                        closestTarget = otherPlayer.Character
+                    end
+                end
+            end
+
+            if closestTarget then
+                local targetHumanoid = closestTarget:FindFirstChild("Humanoid")
+                if targetHumanoid then
+                    -- Apply random damage
+                    targetHumanoid:TakeDamage(math.random(10, 14))
+
+                    -- Play hit animation on target
+                    local targetAnimator = targetHumanoid:FindFirstChild("Animator")
+                    if targetAnimator then
+                        local hitAnim = Instance.new("Animation")
+                        hitAnim.AnimationId = "rbxassetid://10471478869"
+                        local playHitAnim = targetAnimator:LoadAnimation(hitAnim)
+                        playHitAnim:Play()
+
+                        -- Play hit sound
+                        hitSound.Parent = closestTarget.HumanoidRootPart
+                        hitSound:Play()
+
+                        -- Stop main sound
+                        sound:Stop()
+                    end
+                end
+            else
+                -- Play main sound if no target is nearby
+                if not sound.IsPlaying then
+                    sound:Play()
+                end
+            end
+        end
+
+        applyDamageToNearestTarget()
+    end)
 else
     local ToolName = "Swift Sweep"
     local CooldownLength = 16
