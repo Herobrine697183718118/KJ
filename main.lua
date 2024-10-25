@@ -283,61 +283,62 @@ end
 
 
 --SWIFT SWEEP CODE
-local ToolName = "Swift Sweep"
-local CooldownLength = 16
-local ToolSlot = "2"
+if game.PlaceId == 12360882630 then
+    --UNKNOWN
+else
+    local ToolName = "Swift Sweep"
+    local CooldownLength = 16
+    local ToolSlot = "2"
 
-local function ToolCode()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Herobrine697448/KJ/refs/heads/main/KJ%20Basic/Swift%20Sweep.lua"))()
-    delay(0, function() end)
-end
-
-local player = game.Players.LocalPlayer
-local tool = Instance.new("Tool")
-tool.Name = ToolName
-tool.RequiresHandle = false
-tool.Parent = player.Backpack
-
-local debounce = false
-
-tool.Equipped:Connect(function()
-    if not debounce then
-        debounce = true
-
-        local players = game:GetService("Players")
-        local player = players.LocalPlayer
-        local character = player.Character
-        local humanoid = character:FindFirstChildOfClass("Humanoid")
-        if humanoid then
-            humanoid:UnequipTools()
-        end
-
-        delay(CooldownLength, function()
-            debounce = false
-        end)
-
-        local hotbar = player.PlayerGui.Hotbar.Backpack.Hotbar[ToolSlot]
-        local cooldown = player.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
-
-        cooldown.Parent = hotbar
-
-        local tweenService = game:GetService("TweenService")
-        local tweenInfo = TweenInfo.new(CooldownLength, Enum.EasingStyle.Linear)
-        local tweenGoal = {Size = UDim2.new(cooldown.Size.X.Scale, cooldown.Size.X.Offset, 0, 0)}
-
-        local tween = tweenService:Create(cooldown, tweenInfo, tweenGoal)
-        tween:Play()
-
-        tween.Completed:Connect(function()
-            cooldown:Destroy()
-        end)
-
-        delay(0, function()
-            ToolCode()
-        end)
+    local function ToolCode()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Herobrine697448/KJ/refs/heads/main/KJ%20Basic/Swift%20Sweep.lua"))()
+        delay(0, function() end)
     end
-end)
 
+    local player = game.Players.LocalPlayer
+    local tool = Instance.new("Tool")
+    tool.Name = ToolName
+    tool.RequiresHandle = false
+    tool.Parent = player.Backpack
+
+    local debounce = false
+
+    tool.Equipped:Connect(function()
+        if not debounce then
+            debounce = true
+
+            local players = game:GetService("Players")
+            local character = players.LocalPlayer.Character
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid:UnequipTools()
+            end
+
+            delay(CooldownLength, function()
+                debounce = false
+            end)
+
+            local hotbar = player.PlayerGui.Hotbar.Backpack.Hotbar[ToolSlot]
+            local cooldown = player.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+            cooldown.Parent = hotbar
+
+            local tweenService = game:GetService("TweenService")
+            local tweenInfo = TweenInfo.new(CooldownLength, Enum.EasingStyle.Linear)
+            local tweenGoal = {Size = UDim2.new(cooldown.Size.X.Scale, cooldown.Size.X.Offset, 0, 0)}
+
+            local tween = tweenService:Create(cooldown, tweenInfo, tweenGoal)
+            tween:Play()
+
+            tween.Completed:Connect(function()
+                cooldown:Destroy()
+            end)
+
+            delay(0, function()
+                ToolCode()
+            end)
+        end
+    end)
+end
 
 --COLLATERAL RUIN CODE
 local ToolName = "Collateral Ruin"
