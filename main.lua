@@ -79,8 +79,8 @@ local phoneModel = resources:FindFirstChild("PhonePhysicsTest")
 if phoneModel then
     local clonedModel = phoneModel:Clone()
     local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    clonedModel:SetPrimaryPartCFrame(humanoidRootPart.CFrame * CFrame.new(0, 0, -1))
+    local RightArm = character:WaitForChild("Right Arm")
+    clonedModel:SetPrimaryPartCFrame(RightArm.CFrame * CFrame.new(0, 0, -1))
     clonedModel.Parent = workspace
     wait(3)
     clonedModel:Destroy()
