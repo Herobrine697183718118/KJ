@@ -19,16 +19,29 @@ task.spawn(function()
     anim.AnimationId = "rbxassetid://18445236460"
     local playAnim = humanoid:LoadAnimation(anim)
     --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
-    anim.AnimationId = "" .. firstAnimationId
+    anim.AnimationId = "rbxassetid://0"
     playAnim:Play()
+
+    --KJ AWAKENIN VARIANT 2 FE(WALK)
+    local firstAnimation = Instance.new("Animation")
+    anim.AnimationId = "rbxassetid://0"
+    --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
+    firstAnimation.AnimationId = firstAnimationId
+    local firstAnimationTrack = humanoid:LoadAnimation(firstAnimation)
 
     --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
     local anim = Instance.new("Animation")
     anim.AnimationId = "rbxassetid://0"
-    local playAnim = humanoid:LoadAnimation(anim)
     --KJ AWAKENING VARIANT 2
-    anim.AnimationId = "" .. secondAnimationId
+    secondAnimation.AnimationId = secondAnimationId
+    local secondAnimationTrack = humanoid:LoadAnimation(secondAnimation)
     playAnim:Play()
+
+    firstAnimationTrack:Play()
+        
+    wait(1.5)
+    firstAnimationTrack:Stop()
+
 end)
 
 task.spawn(function()
