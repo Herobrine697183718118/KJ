@@ -9,11 +9,25 @@ task.spawn(function()
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild("Humanoid")
 
+    --KJ (FE-SERVER-SIDED ANIMATIONS)
+    local firstAnimationId = "rbxassetid://15962326593"
+    local secondAnimationId = "rbxassetid://17862066234"
+
+
+    --KJ REAL WALKING ULTIMATE VARIANT (CLIENT SIDED)
     local anim = Instance.new("Animation")
     anim.AnimationId = "rbxassetid://18445236460"
-
     local playAnim = humanoid:LoadAnimation(anim)
+    --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
+    anim.AnimationId = "" .. firstAnimationId
+    playAnim:Play()
+
+    --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
+    local anim = Instance.new("Animation")
     anim.AnimationId = "rbxassetid://0"
+    local playAnim = humanoid:LoadAnimation(anim)
+    --KJ AWAKENING VARIANT 2
+    anim.AnimationId = "" .. secondAnimationId
     playAnim:Play()
 end)
 
@@ -113,6 +127,25 @@ task.spawn(function()
 
     -- Execute the VFX when the script runs
     executeVFX()
+end)
+task.spawn(function()
+    local player = game.Players.LocalPlayer
+    repeat wait() until player.Character.Humanoid
+    local humanoid = player.Character.Humanoid
+    local character = player.Character or player.CharacterAdded:Wait()
+    local UserInputService = game:GetService("UserInputService")
+
+    local anim2 = Instance.new("Animation")
+    anim2.AnimationId = "rbxassetid://0"
+    local playAnim2 = humanoid:LoadAnimation(anim2)
+    anim2.AnimationId = "rbxassetid://17862066234"
+        
+    wait(0.8)
+    playAnim2:Play()
+    wait(1.2)
+    playAnim2:AdjustSpeed(0.15)
+    wait(0.5)
+    playAnim2:AdjustSpeed(1)
 end)
 
 
