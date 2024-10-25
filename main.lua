@@ -168,10 +168,9 @@ if game.PlaceId == 12360882630 then
 
         local function playHitAnimation(target)
             animationPlayed = true
-
-             
+                
             character.Humanoid.WalkSpeed = 0
-            character.Humanoid.AutoRotate = false 
+            character.Humanoid.AutoRotate = false
             anim.AnimationId = "rbxassetid://16945550029"
             local playAnim = humanoid:LoadAnimation(anim)
             playAnim:Play()
@@ -184,7 +183,7 @@ if game.PlaceId == 12360882630 then
             local targetAnimationTrack = targetAnimator:LoadAnimation(targetAnim)
             targetAnimationTrack:Play()
 
-            wait(6)
+            wait(1)
             character.Humanoid.WalkSpeed = 16
             character.Humanoid.AutoRotate = true 
         end
