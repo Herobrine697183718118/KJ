@@ -23,11 +23,15 @@ task.spawn(function()
     playAnim:Play()
 
     --KJ AWAKENIN VARIANT 2 FE(WALK)
-    local firstAnimation = Instance.new("Animation")
+    local anim = Instance.new("Animation")
     anim.AnimationId = "rbxassetid://0"
     --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
-    firstAnimation.AnimationId = firstAnimationId
-    local firstAnimationTrack = humanoid:LoadAnimation(firstAnimation)
+    local playAnim1 = humanoid:LoadAnimation(anim)
+    anim.AnimationId = firstAnimationId
+    playAnim1:Play()
+
+    wait(1.5)
+    playAnim1:Stop()
 
     --KJ AWAKENING VARIANT 2 FE(SERVER-SIDED)
     local anim = Instance.new("Animation")
@@ -36,11 +40,6 @@ task.spawn(function()
     secondAnimation.AnimationId = secondAnimationId
     local secondAnimationTrack = humanoid:LoadAnimation(secondAnimation)
     playAnim:Play()
-
-    firstAnimationTrack:Play()
-        
-    wait(1.5)
-    firstAnimationTrack:Stop()
 
 end)
 
