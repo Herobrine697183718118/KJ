@@ -49,47 +49,50 @@ if game.PlaceId == 10449761463 then
     ulttext.Text = "20 SERIES"
 end
 
---KJ SPAWN
-local function playAnimation()
-    local player = game.Players.LocalPlayer
-    repeat wait() until player.Character and player.Character:FindFirstChild("Humanoid")
-    local humanoid = player.Character.Humanoid
-    local character = player.Character or player.CharacterAdded:Wait()
-    
-    local anim2 = Instance.new("Animation")
-    anim2.AnimationId = "rbxassetid://17325160621"
-
-    local playAnim2 = humanoid:LoadAnimation(anim2)
-    playAnim2:Play()
-
-    local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://17325174223"
-    sound.Parent = character
-    sound.Volume = 3
-    sound:Play()
-end
-
-playAnimation()
 if game.PlaceId == 10449761463 then
-    wait(1.2)
-    --KJ PHONE DROP
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    local player = game.Players.LocalPlayer
-    local resources = ReplicatedStorage:WaitForChild("Resources")
-    local phoneModel = resources:FindFirstChild("PhonePhysicsTest")
-
-    if phoneModel then
-        local clonedModel = phoneModel:Clone()
+    -- KJ SPAWN
+    local function playAnimation()
+        local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
-        local RightArm = character:WaitForChild("Right Arm")
-        clonedModel:SetPrimaryPartCFrame(RightArm.CFrame * CFrame.new(0, 0, -1))
-        clonedModel.Parent = workspace
-        wait(3)
-        clonedModel:Destroy()
-    end
-end
---END OF KJ SPAWN
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        -- Play animation
+        local anim2 = Instance.new("Animation")
+        anim2.AnimationId = "rbxassetid://17325160621"
+        local playAnim2 = humanoid:LoadAnimation(anim2)
+        playAnim2:Play()
 
+        -- Play sound effect
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://17325174223"
+        sound.Parent = character
+        sound.Volume = 3
+        sound:Play()
+
+        -- Wait before dropping the phone
+        wait(1.2)
+
+        -- KJ PHONE DROP
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local resources = ReplicatedStorage:WaitForChild("Resources")
+        local phoneModel = resources:FindFirstChild("PhonePhysicsTest")
+
+        if phoneModel then
+            local clonedModel = phoneModel:Clone()
+            local RightArm = character:WaitForChild("Right Arm")
+            clonedModel:SetPrimaryPartCFrame(RightArm.CFrame * CFrame.new(0, 0, -1))
+            clonedModel.Parent = workspace
+            
+            -- Wait, then destroy the phone model
+            wait(3)
+            clonedModel:Destroy()
+        end
+    end
+
+    -- Call the playAnimation function
+    playAnimation()
+end
+-- END OF KJ SPAWN
 
 --KJWallCombo & KJ M1
 if game.PlaceId == 10449761463 then
