@@ -5,31 +5,66 @@ for _, item in ipairs(player.Backpack:GetChildren()) do
 end
 
 
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
-local player = game.Players.LocalPlayer
-repeat wait() until player.Character.Humanoid
-local humanoid = player.Character.Humanoid
-local character = player.Character or player.CharacterAdded:Wait()
-local UserInputService = game:GetService("UserInputService")
+task.spawn(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
 
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://17150550559"
-soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
-soundeffect:Play()
-soundeffect.Volume = 3
+    humanoid.WalkSpeed = 0  -- Disables player movement
 
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://17150550302"
-soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
-soundeffect:Play()
-soundeffect.Volume = 5
+    -- Create and play first sound effect
+    local soundEffect1 = Instance.new("Sound")
+    soundEffect1.SoundId = "rbxassetid://17150550559"
+    soundEffect1.Parent = character:WaitForChild("Torso")
+    soundEffect1.Volume = 3
+    soundEffect1:Play()
 
-local anim = Instance.new("Animation")
-anim.AnimationId = "rbxassetid://17140902079"
+    -- Create and play second sound effect
+    local soundEffect2 = Instance.new("Sound")
+    soundEffect2.SoundId = "rbxassetid://17150550302"
+    soundEffect2.Parent = character.Torso
+    soundEffect2.Volume = 5
+    soundEffect2:Play()
 
-local playAnim = humanoid:LoadAnimation(anim)
-anim.AnimationId = "rbxassetid://0"
-playAnim:Play()
+    -- Load and play animation
+    local anim = Instance.new("Animation")
+    anim.AnimationId = "rbxassetid://17140902079"
+    local playAnim = humanoid:LoadAnimation(anim)
+    anim.AnimationId = "rbxassetid://0"
+    playAnim:Play()
+
+    --KJ ULTIMATE START
+    local anim = Instance.new("Animation")
+    anim.AnimationId = "rbxassetid://0"
+    local playAnim = humanoid:LoadAnimation(anim)
+    anim.AnimationId = "rbxassetid://16746843881"
+    playAnim:Play()
+
+    --KJ ULTIMATE SECOND
+    wait(2)
+    local anim2 = Instance.new("Animation")
+    anim2.AnimationId = "rbxassetid://0"
+    local playAnim2 = humanoid:LoadAnimation(anim2)
+    anim2.AnimationId = "rbxassetid://16039070113"
+    playAnim2:Play()
+
+
+    --KJ ULTIMATE THIRD
+    wait(2)
+    local anim3 = Instance.new("Animation")
+    anim3.AnimationId = "rbxassetid://0"
+    local playAnim3 = humanoid:LoadAnimation(anim3)
+    anim3.AnimationId = "rbxassetid://16524478599"
+    playAnim3:Play()
+
+    --KJ ULTIMATE FOURTH
+    wait(2.3)
+    local anim4 = Instance.new("Animation")
+    anim4.AnimationId = "rbxassetid://0"
+    local playAnim4 = humanoid:LoadAnimation(anim4)
+    anim4.AnimationId = "rbxassetid://16039070113"
+    playAnim4:Play()
+end)
 
 
 --AWAKENING VFX
