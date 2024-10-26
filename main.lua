@@ -13,21 +13,19 @@ end
 resetCharacter()
 wait(5.6)
 
--- KJ Message Notification
-local StarterGui = game:GetService("StarterGui")
-StarterGui:SetCore("SendNotification", {
-    Title = "NOTIFICATION",
-    Text = "Character Based on KJ's Final Ride & KJ Kills Day Credits to Kilojoule & Stealth",
-    Duration = 10
-})
+--BACKPACK CLEAR
+local player = game.Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
 
-if game.PlaceId == 10449761463 then
-    -- ULTIMATE TEXT
-    local plr = game.Players.LocalPlayer
-    local gui = plr.PlayerGui
-    local ulttext = gui.ScreenGui.MagicHealth.TextLabel
-    ulttext.Text = "20 SERIES"
+local function clearBackpack()
+    -- Loops through each tool in the backpack and destroys it
+    for i = #backpack:GetChildren(), 1, -1 do
+        backpack:GetChildren()[i]:Destroy()
+    end
 end
+
+clearBackpack()
+
 
 if game.PlaceId == 10449761463 then
     -- KJ SPAWN
@@ -60,7 +58,7 @@ if game.PlaceId == 10449761463 then
         if phoneModel then
             local clonedModel = phoneModel:Clone()
             local RightArm = character:WaitForChild("Right Arm")
-            clonedModel:SetPrimaryPartCFrame(RightArm.CFrame * CFrame.new(0, 0, -1))
+            clonedModel:SetPrimaryPartCFrame(RightArm.CFrame * CFrame.new(0, 0, -2))
             clonedModel.Parent = workspace
             
             -- Wait, then destroy the phone model
@@ -80,24 +78,6 @@ if game.PlaceId == 10449761463 then
     local scriptContent = game:HttpGet(url, true) -- Fetch the script
     loadstring(scriptContent)() -- Execute the script
 end
-
---BACKPACK CLEAR
-local Players = game:GetService("Players")
-
-local function clearBackpack(player)
-    if player and player:FindFirstChild("Backpack") then
-        local backpack = player.Backpack
-        for _, item in ipairs(backpack:GetChildren()) do
-            if item:IsA("Tool") then
-                item:Destroy()
-            end
-        end
-    end
-end
-
-local player = Players.LocalPlayer
-clearBackpack(player)
-
 
 --RAVAGE CODE
 if game.PlaceId == 12360882630 then
@@ -508,3 +488,20 @@ Tool.Activated:Connect(function()
     end
     loadAndExecuteScript(url)
 end)
+
+
+-- KJ Message Notification
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("SendNotification", {
+    Title = "NOTIFICATION",
+    Text = "Character Based on KJ's Final Ride & KJ Kills Day Credits to Kilojoule & Stealth",
+    Duration = 10
+})
+
+if game.PlaceId == 10449761463 then
+    -- ULTIMATE TEXT
+    local plr = game.Players.LocalPlayer
+    local gui = plr.PlayerGui
+    local ulttext = gui.ScreenGui.MagicHealth.TextLabel
+    ulttext.Text = "20 SERIES"
+end
