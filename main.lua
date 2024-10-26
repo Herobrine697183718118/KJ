@@ -13,19 +13,6 @@ end
 resetCharacter()
 wait(5.6)
 
---BACKPACK CLEAR
-local player = game.Players.LocalPlayer
-local backpack = player:WaitForChild("Backpack")
-
-local function clearBackpack()
-    -- Loops through each tool in the backpack and destroys it
-    for i = #backpack:GetChildren(), 1, -1 do
-        backpack:GetChildren()[i]:Destroy()
-    end
-end
-
-clearBackpack()
-
 
 if game.PlaceId == 10449761463 then
     -- KJ SPAWN
@@ -62,8 +49,10 @@ if game.PlaceId == 10449761463 then
             clonedModel.Parent = workspace
             
             -- Wait, then destroy the phone model
-            wait(3)
-            clonedModel:Destroy()
+            task.spawn(function()
+                wait(2)
+                clonedModel:Destroy()
+            end)
         end
     end
 
@@ -71,6 +60,20 @@ if game.PlaceId == 10449761463 then
     playAnimation()
 end
 -- END OF KJ SPAWN
+
+
+--BACKPACK CLEAR
+local player = game.Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
+
+local function clearBackpack()
+    -- Loops through each tool in the backpack and destroys it
+    for i = #backpack:GetChildren(), 1, -1 do
+        backpack:GetChildren()[i]:Destroy()
+    end
+end
+
+clearBackpack()
 
 --KJWallCombo & KJ M1
 if game.PlaceId == 10449761463 then
