@@ -13,26 +13,6 @@ end
 resetCharacter()
 wait(5.6)
 
-
---BACKPACK CLEAR
-local Players = game:GetService("Players")
-
-local function clearBackpack(player)
-    if player and player:FindFirstChild("Backpack") then
-        local backpack = player.Backpack
-        for _, item in ipairs(backpack:GetChildren()) do
-            if item:IsA("Tool") then
-                item:Destroy()
-            end
-        end
-    end
-end
-
-local player = Players.LocalPlayer
-clearBackpack(player)
-
-
-
 -- KJ Message Notification
 local StarterGui = game:GetService("StarterGui")
 StarterGui:SetCore("SendNotification", {
@@ -101,6 +81,22 @@ if game.PlaceId == 10449761463 then
     loadstring(scriptContent)() -- Execute the script
 end
 
+--BACKPACK CLEAR
+local Players = game:GetService("Players")
+
+local function clearBackpack(player)
+    if player and player:FindFirstChild("Backpack") then
+        local backpack = player.Backpack
+        for _, item in ipairs(backpack:GetChildren()) do
+            if item:IsA("Tool") then
+                item:Destroy()
+            end
+        end
+    end
+end
+
+local player = Players.LocalPlayer
+clearBackpack(player)
 
 
 --RAVAGE CODE
