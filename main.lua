@@ -401,15 +401,52 @@ end
 
 --COLLATERAL RUIN CODE
 if game.PlaceId == 12360882630 then
-    local player = game.Players.LocalPlayer
     local tool = Instance.new("Tool")
     tool.Name = "Collateral Ruin"
     tool.RequiresHandle = false
-    tool.CanBeDropped = true
-    tool.Parent = player.Backpack
+    tool.Parent = game.Players.LocalPlayer.Backpack
+
+    local player = game.Players.LocalPlayer
+    repeat wait() until player.Character and player.Character:FindFirstChild("Humanoid")
+    local humanoid = player.Character.Humanoid
+
+    local function applyDamageToNearestTarget()
+        local closestTarget = nil
+        local closestDistance = 10
+
+        for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
+            if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                local distance = (player.Character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).Magnitude
+
+                if distance <= closestDistance then
+                    closestDistance = distance
+                    closestTarget = otherPlayer.Character
+                end
+            end
+        end
+
+        if closestTarget then
+            local humanoid = closestTarget:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid:TakeDamage(15)
+            end
+        end
+    end
 
     tool.Activated:Connect(function()
-        print("Unfinished")
+        local anim = Instance.new("Animation")
+        anim.AnimationId = "rbxassetid://17325254223"
+        local playAnim = humanoid:LoadAnimation(anim)
+        playAnim:Play()
+
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://17325303798"
+        sound.Parent = player.Character
+        sound:Play()
+
+        wait(1)
+
+        applyDamageToNearestTarget()
     end)
 else
     local ToolName = "Collateral Ruin"
