@@ -45,13 +45,13 @@ local function playHitSound()
     Sound4.SoundId = "rbxassetid://16945691441"
     Sound4.Volume = 2
     Sound4:Play()
-    
-    local Sound5 = Instance.new("Sound")
-    Sound5.Parent = character
-    Sound5.SoundId = "rbxassetid://16945723339"
-    Sound5.Volume = 1
 
-    Sound4.Ended:Connect(function()
+    task.spawn(function()
+            wait(5.5)
+            local Sound5 = Instance.new("Sound")
+            Sound5.Parent = character
+            Sound5.SoundId = "rbxassetid://16945723339"
+            Sound5.Volume = 1
             Sound5:Play()
     end)
 end
