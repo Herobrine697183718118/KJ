@@ -12,6 +12,11 @@ local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://17325303798"
 sound.Parent = player.Character
 sound:Play()
+
+local sound2 = Instance.new("Sound")
+sound2.SoundId = "rbxassetid://17344162331"
+sound2.Parent = player.Character
+sound2:Play()
 wait(1)
 
 local boom1 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
@@ -191,9 +196,15 @@ local function applyDamageToNearestTarget()
         end
     end
 
-    --if not sound.IsPlaying then
-        --sound:Play()
-    --end
+    local hitsound = Instance.new("Sound")
+    hitsound.SoundId = "rbxassetid://17325675061"
+    hitsound.Parent = player.Character
+    hitsound:Play()
+
+    local hitlightning = Instance.new("Sound")
+    hitlightning.SoundId = "rbxassetid://17325675161"
+    hitlightning.Parent = player.Character
+    hitlightning:Play()
 
     local player = game.Players.LocalPlayer
     local health = player.PlayerGui:WaitForChild("ScreenGui"):WaitForChild("MagicHealth"):WaitForChild("Health")
