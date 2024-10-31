@@ -3,11 +3,15 @@ local player = game.Players.LocalPlayer
 repeat wait() until player.Character and player.Character:FindFirstChild("Humanoid")
 local humanoid = player.Character.Humanoid
 
+local anim1 = Instance.new("Animation")
+anim1.AnimationId = "rbxassetid://16944265635"
+local playAnim1 = humanoid:LoadAnimation(anim1)
+anim1.AnimationId = "rbxassetid://0"
+
 local anim2 = Instance.new("Animation")
 anim2.AnimationId = "rbxassetid://16944345619"
 local playAnim2 = humanoid:LoadAnimation(anim2)
 anim2.AnimationId = "rbxassetid://0"
-playAnim2:Play()
 
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://16944636115"
@@ -18,7 +22,6 @@ local hitSound = Instance.new("Sound")
 hitSound.SoundId = "rbxassetid://16944654440"
 hitSound.Volume = 2
 
-local player = game.Players.LocalPlayer
 local health = player.PlayerGui:WaitForChild("ScreenGui"):WaitForChild("MagicHealth"):WaitForChild("Health")
 local bar = health:WaitForChild("Bar")
 
@@ -28,11 +31,9 @@ local Increase = math.random(10, 14)
 local function updateBarSize()
     local currentWidth = bar.Size.X.Offset
     local newWidth = currentWidth + Increase
-
     if newWidth > maxBarWidth then
         newWidth = maxBarWidth
     end
-
     bar.Size = UDim2.new(0, newWidth, 0, 17)
 end
 
@@ -43,7 +44,6 @@ local function applyDamageToNearestTarget()
     for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
         if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
             local distance = (player.Character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).Magnitude
-
             if distance <= closestDistance then
                 closestDistance = distance
                 closestTarget = otherPlayer.Character
@@ -73,10 +73,15 @@ local function applyDamageToNearestTarget()
 
                 hitSound.Parent = closestTarget.HumanoidRootPart
                 hitSound:Play()
+                playAnim2:Play()
                 updateBarSize()
                 sound:Stop()
                 return
             end
+        end
+    else
+        if not playAnim1.IsPlaying then
+            playAnim1:Play()
         end
     end
 
