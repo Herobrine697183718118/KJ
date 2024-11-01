@@ -170,6 +170,7 @@ local function applyDamageToNearestTarget()
     local closestTarget = nil
     local closestDistance = 10
 
+    -- Find the nearest player target
     for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
         if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
             local distance = (player.Character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -181,6 +182,7 @@ local function applyDamageToNearestTarget()
         end
     end
 
+    -- Check for the Weakest Dummy target
     local dummy = game.Workspace.Live:FindFirstChild("Weakest Dummy")
     if dummy and dummy:FindFirstChild("HumanoidRootPart") then
         local distance = (player.Character.HumanoidRootPart.Position - dummy.HumanoidRootPart.Position).Magnitude
@@ -189,24 +191,26 @@ local function applyDamageToNearestTarget()
         end
     end
 
+    -- Apply damage and play sounds if a target was found
     if closestTarget then
         local humanoid = closestTarget:FindFirstChild("Humanoid")
         if humanoid then
             humanoid:TakeDamage(15)
+
+            -- Play hit sounds only when a target is hit
+            local hitsound = Instance.new("Sound")
+            hitsound.SoundId = "rbxassetid://17325675061"
+            hitsound.Parent = player.Character
+            hitsound:Play()
+
+            local hitlightning = Instance.new("Sound")
+            hitlightning.SoundId = "rbxassetid://17325675161"
+            hitlightning.Parent = player.Character
+            hitlightning:Play()
         end
     end
 
-    local hitsound = Instance.new("Sound")
-    hitsound.SoundId = "rbxassetid://17325675061"
-    hitsound.Parent = player.Character
-    hitsound:Play()
-
-    local hitlightning = Instance.new("Sound")
-    hitlightning.SoundId = "rbxassetid://17325675161"
-    hitlightning.Parent = player.Character
-    hitlightning:Play()
-
-    local player = game.Players.LocalPlayer
+    -- Health bar logic (this can stay outside of the target checking)
     local health = player.PlayerGui:WaitForChild("ScreenGui"):WaitForChild("MagicHealth"):WaitForChild("Health")
     local bar = health:WaitForChild("Bar")
 
