@@ -419,34 +419,11 @@ if game.PlaceId == 12360882630 then
     tool.RequiresHandle = false
     tool.Parent = game.Players.LocalPlayer.Backpack
 
-    local player = game.Players.LocalPlayer
-    repeat wait() until player.Character and player.Character:FindFirstChild("Humanoid")
-    local humanoid = player.Character.Humanoid
-
-    local function applyDamageToNearestTarget()
-        local closestTarget = nil
-        local closestDistance = 10
-
-        for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
-            if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                local distance = (player.Character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).Magnitude
-
-                if distance <= closestDistance then
-                    closestDistance = distance
-                    closestTarget = otherPlayer.Character
-                end
-            end
-        end
-
-        if closestTarget then
-            local humanoid = closestTarget:FindFirstChild("Humanoid")
-            if humanoid then
-                humanoid:TakeDamage(15)
-            end
-        end
-    end
-
     tool.Activated:Connect(function()
+        local player = game.Players.LocalPlayer
+        repeat wait() until player.Character and player.Character:FindFirstChild("Humanoid")
+        local humanoid = player.Character.Humanoid
+
         local anim = Instance.new("Animation")
         anim.AnimationId = "rbxassetid://17325254223"
         local playAnim = humanoid:LoadAnimation(anim)
@@ -457,7 +434,60 @@ if game.PlaceId == 12360882630 then
         sound.Parent = player.Character
         sound:Play()
 
+        local sound2 = Instance.new("Sound")
+        sound2.SoundId = "rbxassetid://17344162331"
+        sound2.Parent = player.Character
+        sound2:Play()
         wait(1)
+
+        wait(0.2)
+
+        playAnim:AdjustSpeed(0)
+
+        wait(0.3)
+
+        playAnim:AdjustSpeed(1)
+
+        local function applyDamageToNearestTarget()
+            local closestTarget = nil
+            local closestDistance = 10
+
+            for _, otherPlayer in ipairs(game.Players:GetPlayers()) do
+                if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local distance = (player.Character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).Magnitude
+
+                    if distance <= closestDistance then
+                        closestDistance = distance
+                        closestTarget = otherPlayer.Character
+                    end
+                end
+            end
+
+            local dummy = game.Workspace.Live:FindFirstChild("Weakest Dummy")
+            if dummy and dummy:FindFirstChild("HumanoidRootPart") then
+                local distance = (player.Character.HumanoidRootPart.Position - dummy.HumanoidRootPart.Position).Magnitude
+                if distance <= closestDistance then
+                    closestTarget = dummy
+                end
+            end
+
+            if closestTarget then
+                local humanoid = closestTarget:FindFirstChild("Humanoid")
+                if humanoid then
+                    humanoid:TakeDamage(15)
+                end
+            end
+
+            local hitsound = Instance.new("Sound")
+            hitsound.SoundId = "rbxassetid://17325675061"
+            hitsound.Parent = player.Character
+            hitsound:Play()
+
+            local hitlightning = Instance.new("Sound")
+            hitlightning.SoundId = "rbxassetid://17325675161"
+            hitlightning.Parent = player.Character
+            hitlightning:Play()
+        end
 
         applyDamageToNearestTarget()
     end)
