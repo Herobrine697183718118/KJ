@@ -4,7 +4,6 @@ for _, item in ipairs(player.Backpack:GetChildren()) do
     item:Destroy()
 end
 
-
 task.spawn(function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -64,8 +63,23 @@ task.spawn(function()
     local playAnim4 = humanoid:LoadAnimation(anim4)
     anim4.AnimationId = "rbxassetid://16039070113"
     playAnim4:Play()
-end)
 
+   local function UltimateHeal()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChild("Humanoid")
+
+        local startTime = tick()  -- Record the start time
+        while tick() - startTime < 6 do
+            if humanoid then
+                humanoid.Health = humanoid.MaxHealth  -- Set health to maximum
+            end
+            wait(0.1)  -- Wait briefly to avoid freezing the script
+        end
+    end
+    -- Trigger the UltimateHeal function
+    UltimateHeal()
+end)
 
 --AWAKENING VFX
 local player = game.Players.LocalPlayer
