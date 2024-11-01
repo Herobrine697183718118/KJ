@@ -293,7 +293,7 @@ local function playEffects()
         anim.AnimationId = "rbxassetid://0" 
         playAnim:Play() 
 
-        local function playSound()
+        local function playSound1()
             local sound = Instance.new("Sound")
             sound.SoundId = "rbxassetid://18461820786"
             sound.Parent = character
@@ -301,10 +301,10 @@ local function playEffects()
             sound:Play()
         end
 
-        playSound()
+        playSound1()
         wait(1.9)
-        
-        local function playSound()
+
+        local function playSound2()
             local sound = Instance.new("Sound")
             sound.SoundId = "rbxassetid://18461821277"
             sound.Parent = character
@@ -312,10 +312,10 @@ local function playEffects()
             sound:Play()
         end
         
-        playSound()
+        playSound2()
         wait(1.4)
 
-        local function playSound()
+        local function playSound3()
             local sound = Instance.new("Sound")
             sound.SoundId = "rbxassetid://18462018744"
             sound.Parent = character
@@ -323,19 +323,51 @@ local function playEffects()
             sound:Play()
         end
         
-        playSound()
-        local fistsModelMirrored = ReplicatedStorage.Resources.FiveSeasonsFX.FistsModelMirrored:Clone()
-        fistsModelMirrored.Parent = workspace
-        fistsModelMirrored:SetPrimaryPartCFrame(character.HumanoidRootPart.CFrame * CFrame.new(0, 325, 0))
+        playSound3()
 
-        local function destroyFists()
-            wait(2.3)
-            fistsModelMirrored:Destroy()
-        end
-        
-        destroyFists()
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+        local RS = game.ReplicatedStorage
+        local FiveEffects = RS.Resources.FiveSeasonsFX
+        local humanoid = LocalPlayer.Character:WaitForChild("Humanoid")
 
-        local function playSound()
+        task.spawn(function()
+            local fistModel = FiveEffects.FistsModelMirrored:Clone()
+            fistModel.Parent = workspace
+
+            if #fistModel:GetChildren() == 0 then
+                return
+            end
+
+            if not fistModel.PrimaryPart then
+                fistModel.PrimaryPart = fistModel:GetChildren()[1]
+            end
+
+            if not fistModel.PrimaryPart then
+                return
+            end
+
+            local skyHeight = 200
+            fistModel:SetPrimaryPartCFrame(LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, skyHeight, 0))
+
+            for i = 1, 5 do
+                wait()
+                fistModel:SetPrimaryPartCFrame(fistModel.PrimaryPart.CFrame + Vector3.new(0, -5, 0))
+            end
+            for i = 1, 75 do
+                wait()
+                fistModel:SetPrimaryPartCFrame(fistModel.PrimaryPart.CFrame + Vector3.new(0, -0.5, 0))
+            end
+            for i = 1, 5 do
+                wait()
+                fistModel:SetPrimaryPartCFrame(fistModel.PrimaryPart.CFrame + Vector3.new(0, -40, 0))
+            end
+
+            fistModel:Destroy()
+        end)
+
+        wait(2.2)
+        local function playSound4()
             local sound = Instance.new("Sound")
             sound.SoundId = "rbxassetid://18462312002"
             sound.Parent = character
@@ -343,10 +375,10 @@ local function playEffects()
             sound:Play()
         end
         
-        playSound()
+        playSound4()
         wait(1.6)
 
-        local function playSound()
+        local function playSound5()
             local sound = Instance.new("Sound")
             sound.SoundId = "rbxassetid://18462330981"
             sound.Parent = character
@@ -354,7 +386,7 @@ local function playEffects()
             sound:Play()
         end
         
-        playSound()
+        playSound5()
 
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
@@ -380,13 +412,13 @@ local function playEffects()
                 for _, child in ipairs(instance:GetDescendants()) do
                     if child:IsA("ParticleEmitter") then
                         child.Enabled = true
-                        child:Emit(1)  -- Emit 1 particle
+                        child:Emit(1)
                         child.Enabled = false
                     end
                 end
             end
             
-            emitParticles(clonedFinalExplosion)  -- Call to emit particles
+            emitParticles(clonedFinalExplosion)
         end)
     end
 end
