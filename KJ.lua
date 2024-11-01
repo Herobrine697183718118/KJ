@@ -47,6 +47,18 @@ local function onAnimationPlayed(animationTrack)
         sound.Volume = 3
         sound.Parent = game.Players.LocalPlayer.Character
 
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://18443049348"
+        sound.Volume = 1
+        sound.Parent = game.Players.LocalPlayer.Character
+
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://18443813318"
+        sound.Volume = 1
+        sound.Parent = game.Players.LocalPlayer.Character
+        
+        
+
         local AnimAnim = Instance.new("Animation")
         AnimAnim.AnimationId = "rbxassetid://18447913645"
         local Anim = Humanoid:LoadAnimation(AnimAnim)
@@ -112,7 +124,7 @@ local isAnimating = false
 local function playSound(soundId)
     local sound = Instance.new("Sound")
     sound.SoundId = soundId
-    sound.Volume = 3
+    sound.Volume = 1
     sound.Parent = character
     sound:Play()
 end
