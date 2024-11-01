@@ -280,21 +280,28 @@ if game.PlaceId == 12360882630 then
         humanoid.WalkSpeed = 10
 
         -- Play the main animation
+        local anim1 = Instance.new("Animation")
+        anim1.AnimationId = "rbxassetid://16944265635"
+        local playAnim1 = humanoid:LoadAnimation(anim1)
+        anim1.AnimationId = "rbxassetid://0"
+
         local anim2 = Instance.new("Animation")
         anim2.AnimationId = "rbxassetid://16944345619"
         local playAnim2 = humanoid:LoadAnimation(anim2)
-        playAnim2:Play()
+        anim2.AnimationId = "rbxassetid://0"
 
-        -- Sound setup
         local sound = Instance.new("Sound")
         sound.SoundId = "rbxassetid://16944636115"
-        sound.Volume = 2
         sound.Parent = player.Character.HumanoidRootPart
-        sound:Play()
+        sound.Volume = 1
 
         local hitSound = Instance.new("Sound")
         hitSound.SoundId = "rbxassetid://16944654440"
-        hitSound.Volume = 2
+        hitSound.Volume = 1
+
+        local hitSound2 = Instance.new("Sound")
+        hitSound2.SoundId = "rbxassetid://16944654157"
+        hitSound2.Volume = 1
 
         -- Function to apply damage to the nearest target within range
         local function applyDamageToNearestTarget()
