@@ -346,13 +346,15 @@ if game.PlaceId == 12360882630 then
                         return
                     end
                 end
-            else
-                -- Play main sound if no target is nearby
+                else
+                    if not playAnim1.IsPlaying then
+                        playAnim1:Play()
+                    end
+                end
                 if not sound.IsPlaying then
                     sound:Play()
                 end
             end
-        end
 
         applyDamageToNearestTarget()
     end)
