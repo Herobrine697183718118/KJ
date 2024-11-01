@@ -77,8 +77,8 @@ else
     local function onErrorNotification()
         game.StarterGui:SetCore("SendNotification", {
             Title = "NOTIFICATION",
-            Text = "YOU'RE ALREADY PLAYING AS THIS CHARACTER.",
-            Duration = 5
+            Text = "YOU'RE ALREADY PLAYING THIS CHARACTER.",
+            Duration = 10
         })
     end
     
