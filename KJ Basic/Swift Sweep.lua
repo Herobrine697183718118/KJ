@@ -16,11 +16,15 @@ anim2.AnimationId = "rbxassetid://0"
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://16944636115"
 sound.Parent = player.Character.HumanoidRootPart
-sound.Volume = 2
+sound.Volume = 1
 
 local hitSound = Instance.new("Sound")
 hitSound.SoundId = "rbxassetid://16944654440"
-hitSound.Volume = 2
+hitSound.Volume = 1
+
+local hitSound2 = Instance.new("Sound")
+hitSound2.SoundId = "rbxassetid://16944654157"
+hitSound2.Volume = 1
 
 local health = player.PlayerGui:WaitForChild("ScreenGui"):WaitForChild("MagicHealth"):WaitForChild("Health")
 local bar = health:WaitForChild("Bar")
@@ -72,7 +76,12 @@ local function applyDamageToNearestTarget()
                 playHitAnim:Play()
 
                 hitSound.Parent = closestTarget.HumanoidRootPart
+                hitSound2.Parent = closestTarget.HumanoidRootPart
                 hitSound:Play()
+                task.spawn(function()
+                    wait(0.4)
+                    hitSound2:Play()
+                end)
                 playAnim2:Play()
                 updateBarSize()
                 sound:Stop()
