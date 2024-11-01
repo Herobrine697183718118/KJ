@@ -11,54 +11,56 @@ local workspace = game:GetService("Workspace")
 
 
 --START OF FIVESEASONS JUMPFX
-local resourcesFolder = ReplicatedStorage:FindFirstChild("Resources")
-if not resourcesFolder then return end
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local torso = character:FindFirstChild("Torso")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local workspace = game:GetService("Workspace")
 
+task.spawn(function()
+    wait(1)
 
-local fiveSeasonsFX = resourcesFolder:FindFirstChild("FiveSeasonsFX")
-if not fiveSeasonsFX then return end
+    local resourcesFolder = replicatedStorage:FindFirstChild("Resources")
+    if not resourcesFolder then return end
 
+    local fiveSeasonsFX = resourcesFolder:FindFirstChild("FiveSeasonsFX")
+    if not fiveSeasonsFX then return end
 
-local jumpFXModel = fiveSeasonsFX:FindFirstChild("JumpFX")
-if not jumpFXModel then return end
+    local jumpFXModel = fiveSeasonsFX:FindFirstChild("JumpFX")
+    if not jumpFXModel then return end
 
+    local jumpFXPart = jumpFXModel:FindFirstChild("JumpFX")
+    if not jumpFXPart then return end
 
-local jumpFXPart = jumpFXModel:FindFirstChild("JumpFX")
-if not jumpFXPart then return end
+    local clonedJumpFX = jumpFXPart:Clone()
+    clonedJumpFX.Parent = workspace
 
-
-local clonedJumpFX = jumpFXPart:Clone()
-clonedJumpFX.Parent = workspace
-
-
-local function emitParticles(instance)
-    for _, child in ipairs(instance:GetDescendants()) do
-        if child:IsA("ParticleEmitter") then
-            child.Enabled = true
-            child:Emit(1)
-            child.Enabled = false
+    local function emitParticles(instance)
+        for _, child in ipairs(instance:GetDescendants()) do
+            if child:IsA("ParticleEmitter") then
+                child.Enabled = true
+                child:Emit(1)
+                child.Enabled = false
+            end
         end
     end
-end
 
+    local function positionOnFloor(part)
+        if torso then
+            local torsoPosition = torso.Position
+            local rayOrigin = torsoPosition + Vector3.new(0, 4, 0)
+            local rayDirection = Vector3.new(0, -20, 0)
+            local raycastResult = workspace:Raycast(rayOrigin, rayDirection)
 
-local function positionOnFloor(part)
-    if torso then
-        local torsoPosition = torso.Position
-        local rayOrigin = torsoPosition + Vector3.new(0, 1.6, 0)
-        local rayDirection = Vector3.new(0, -20, 0)
-        local raycastResult = workspace:Raycast(rayOrigin, rayDirection)
-
-
-        if raycastResult then
-            part.Position = raycastResult.Position - Vector3.new(0, 0.9, 0)
+            if raycastResult then
+                part.Position = raycastResult.Position - Vector3.new(0, 0.9, 0)
+            end
         end
     end
-end
 
-
-emitParticles(clonedJumpFX)
-positionOnFloor(clonedJumpFX)
+    emitParticles(clonedJumpFX)
+    positionOnFloor(clonedJumpFX)
+end)
 --END OF FIVE SEASONS JUMPFX
 
 
@@ -100,7 +102,7 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 local workspace = game:GetService("Workspace")
 
 task.spawn(function()
-    wait(1.5)
+    wait(1.2)
     
     local function createJumpMeshes()
         local fiveSeasonsFX = replicatedStorage:WaitForChild("Resources"):WaitForChild("FiveSeasonsFX"):WaitForChild("JumpMeshes")
