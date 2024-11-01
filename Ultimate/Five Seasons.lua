@@ -93,6 +93,44 @@ end
 playSound() 
 
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local workspace = game:GetService("Workspace")
+
+task.spawn(function()
+    wait(1.5)
+    
+    local function createJumpMeshes()
+        local fiveSeasonsFX = replicatedStorage:WaitForChild("Resources"):WaitForChild("FiveSeasonsFX"):WaitForChild("JumpMeshes")
+        local jumpMeshes = fiveSeasonsFX:Clone()
+        jumpMeshes.Parent = workspace
+        jumpMeshes:SetPrimaryPartCFrame(humanoidRootPart.CFrame * CFrame.new(0, -10, 0))
+
+        local bodyVelocity = Instance.new("BodyVelocity")
+        bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
+        bodyVelocity.P = 1250
+        bodyVelocity.Velocity = Vector3.new(0, 50, 0)
+        bodyVelocity.Parent = jumpMeshes.PrimaryPart
+
+        for _, child in ipairs(jumpMeshes:GetDescendants()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(50)
+            elseif child:IsA("Sound") then
+                child:Play()
+            end
+        end
+
+        task.spawn(function()
+            wait(2.3)
+            jumpMeshes:Destroy()
+        end)
+    end
+
+    createJumpMeshes()
+end)
+
 
 --KJ TALK
 wait(1.4)
