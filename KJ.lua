@@ -42,29 +42,23 @@ local function onAnimationPlayed(animationTrack)
             animTrack:Stop()
         end
 
-        local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://18443048724"
-        sound.Volume = 3
-        sound.Parent = game.Players.LocalPlayer.Character
-
-        local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://18443049348"
-        sound.Volume = 1
-        sound.Parent = game.Players.LocalPlayer.Character
-
-        local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://18443813318"
-        sound.Volume = 1
-        sound.Parent = game.Players.LocalPlayer.Character
-        
-        
-
         local AnimAnim = Instance.new("Animation")
         AnimAnim.AnimationId = "rbxassetid://18447913645"
         local Anim = Humanoid:LoadAnimation(AnimAnim)
         AnimAnim.AnimationId = "rbxassetid://0"
         
+        local sound1 = Instance.new("Sound")
+        sound1.SoundId = "rbxassetid://18443048724"
+        sound1.Volume = 3
+        sound1.Parent = game.Players.LocalPlayer.Character
+
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://18443049348"
+        sound.Volume = 1
+        sound.Parent = game.Players.LocalPlayer.Character
+        
         Anim:Play()
+        sound1:Play()
         sound:Play()
         wait(5.6)
         local Origin = game.ReplicatedStorage.Resources.KJEffects.KJWallCombo["FinalImpact"].Origin:Clone()
