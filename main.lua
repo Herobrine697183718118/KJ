@@ -283,7 +283,6 @@ if game.PlaceId == 12360882630 then
         local anim1 = Instance.new("Animation")
         anim1.AnimationId = "rbxassetid://16944265635"
         local playAnim1 = humanoid:LoadAnimation(anim1)
-        anim1.AnimationId = "rbxassetid://0"
 
         local anim2 = Instance.new("Animation")
         anim2.AnimationId = "rbxassetid://16944345619"
@@ -351,12 +350,12 @@ if game.PlaceId == 12360882630 then
                         playAnim1:Play()
                     end
                 end
+                
                 if not sound.IsPlaying then
                     sound:Play()
                 end
             end
-
-        applyDamageToNearestTarget()
+            applyDamageToNearestTarget()
     end)
 else
     local ToolName = "Swift Sweep"
