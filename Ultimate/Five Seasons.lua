@@ -324,7 +324,6 @@ local function playEffects()
         end
         
         playSound()
-        -- FIST SPAWNING MECHANISM
         local fistsModelMirrored = ReplicatedStorage.Resources.FiveSeasonsFX.FistsModelMirrored:Clone()
         fistsModelMirrored.Parent = workspace
         fistsModelMirrored:SetPrimaryPartCFrame(character.HumanoidRootPart.CFrame * CFrame.new(0, 325, 0))
@@ -356,6 +355,39 @@ local function playEffects()
         end
         
         playSound()
+
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local workspace = game:GetService("Workspace")
+
+        task.spawn(function()
+            local resourcesFolder = replicatedStorage:FindFirstChild("Resources")
+            if not resourcesFolder then return end
+
+            local fiveSeasonsFX = resourcesFolder:FindFirstChild("FiveSeasonsFX")
+            if not fiveSeasonsFX then return end
+
+            local finalExplosionModel = fiveSeasonsFX:FindFirstChild("FinalExplosion")
+            if not finalExplosionModel then return end
+            
+            local clonedFinalExplosion = finalExplosionModel:Clone()
+            clonedFinalExplosion.Parent = workspace
+            clonedFinalExplosion:SetPrimaryPartCFrame(humanoidRootPart.CFrame * CFrame.new(0, 0, 0))
+
+            local function emitParticles(instance)
+                for _, child in ipairs(instance:GetDescendants()) do
+                    if child:IsA("ParticleEmitter") then
+                        child.Enabled = true
+                        child:Emit(1)  -- Emit 1 particle
+                        child.Enabled = false
+                    end
+                end
+            end
+            
+            emitParticles(clonedFinalExplosion)  -- Call to emit particles
+        end)
     end
 end
 
