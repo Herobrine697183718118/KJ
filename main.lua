@@ -333,12 +333,17 @@ if game.PlaceId == 12360882630 then
                         local playHitAnim = targetAnimator:LoadAnimation(hitAnim)
                         playHitAnim:Play()
 
-                        -- Play hit sound
                         hitSound.Parent = closestTarget.HumanoidRootPart
+                        hitSound2.Parent = closestTarget.HumanoidRootPart
                         hitSound:Play()
-
-                        -- Stop main sound
+                        task.spawn(function()
+                                    wait(0.4)
+                                    hitSound2:Play()
+                        end)
+                        playAnim2:Play()
+                        updateBarSize()
                         sound:Stop()
+                        return
                     end
                 end
             else
