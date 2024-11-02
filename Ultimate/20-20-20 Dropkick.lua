@@ -36,6 +36,17 @@
         local Anim = Humanoid:LoadAnimation(AnimAnim)
         AnimAnim.AnimationId = "rbxassetid://0"
         Anim:Play()
+
+        --FE DROPKICK START
+        task.spawn(function()
+              wait(1)
+              local AnimStart = Instance.new("Animation")
+              AnimStart.AnimationId = "rbxassetid://0"
+              local Anim = Humanoid:LoadAnimation(AnimStart)
+              AnimStart.AnimationId = "rbxassetid://13047328208"
+              Anim:Play()
+        end)
+
         
         local soundId = 17429233290 -- Correct sound ID
         
