@@ -994,7 +994,7 @@
                               humanoid.AutoRotate = false
                               local startTime = tick()
 
-                              while tick() - startTime < 13 do
+                              while tick() - startTime < 14 do
                                    humanoid.AutoRotate = false
                                    task.wait()
                               end
