@@ -7,8 +7,12 @@ local Anim = Humanoid:LoadAnimation(AnimAnim)
 AnimAnim.AnimationId = "rbxassetid://0"
 Anim:Play()
 
-local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://17356346310"
-sound.Parent = workspace
-sound.Volume = 1
-sound:Play()
+local function playSound()
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://17356346310"
+    sound.Parent = character
+    sound.Volume = 1
+    sound:Play()
+end
+
+playSound()
