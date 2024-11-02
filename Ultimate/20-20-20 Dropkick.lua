@@ -1010,17 +1010,15 @@
                         local player = Players.LocalPlayer
                         local character = player.Character or player.CharacterAdded:Wait()
                         local humanoid = character:WaitForChild("Humanoid")
-
                         task.spawn(function()
-                              humanoid.AutoRotate = false
-                              local startTime = tick()
+                            humanoid.AutoRotate = false
+                            local startTime = tick()
 
-                              while tick() - startTime < 14 do
-                                   humanoid.AutoRotate = false
-                                   task.wait()
-                              end
+                            while tick() - startTime < 14 do
+                                humanoid.AutoRotate = false
+                                task.wait()
+                            end
                         end)
-        
                         local speaker = p
                         speaker.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
                         heartbeatConnection:Disconnect()
