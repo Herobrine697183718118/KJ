@@ -985,6 +985,20 @@
                         hitlist[hitHumanoid] = true
                         candash = false
                         hit = 1
+                        local Players = game:GetService("Players")
+                        local player = Players.LocalPlayer
+                        local character = player.Character or player.CharacterAdded:Wait()
+                        local humanoid = character:WaitForChild("Humanoid")
+
+                        task.spawn(function()
+                              humanoid.AutoRotate = false
+                              local startTime = tick()
+
+                              while tick() - startTime < 13 do
+                                   humanoid.AutoRotate = false
+                                   task.wait()
+                              end
+                        end)
         
                         local speaker = p
                         speaker.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
@@ -1244,17 +1258,17 @@
                 end
             end
             spawn(function()
+            final2:Destroy()
+            final3:Destroy()
+            final4:Destroy()
+            final5:Destroy()
+            final6:Destroy()
             wait(15)
             local targetName = "thespeedthingunderultik"
             for i = 1, 15 do
                 character:WaitForChild("HumanoidRootPart").Anchored = false
             character:WaitForChild("Humanoid").AutoRotate = true
             wait(1)
-            final2:Destroy()
-            final3:Destroy()
-            final4:Destroy()
-            final5:Destroy()
-            final6:Destroy()
             end
         -- Workspace'teki tÃƒÂ¼m objeleri dÃƒÂ¶ner
         for _, obj in pairs(workspace:GetDescendants()) do
