@@ -1250,8 +1250,12 @@
                 character:WaitForChild("HumanoidRootPart").Anchored = false
             character:WaitForChild("Humanoid").AutoRotate = true
             wait(1)
+            final2:Destroy()
+            final3:Destroy()
+            final4:Destroy()
+            final5:Destroy()
+            final6:Destroy()
             end
-            
         -- Workspace'teki tÃƒÂ¼m objeleri dÃƒÂ¶ner
         for _, obj in pairs(workspace:GetDescendants()) do
             -- EÃ„Å¸er objenin adÃ„Â± 'speedlines' ise
@@ -1356,6 +1360,7 @@
                 end
             end
         wait(1.4)
+        launch1:Destroy()
         
         
         local soundId = 17419337758 -- Correct sound ID
