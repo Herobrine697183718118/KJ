@@ -1,5 +1,12 @@
-local player = game.Player.LocalPlaher
-local Humanoid = Character:WaitForChild("Humanoid")
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local Humanoid = player.Character.Humanoid
+local character = player.Character or player.CharacterAdded:Wait()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local torso = character:FindFirstChild("Torso")
+local workspace = game:GetService("Workspace")
 
 local AnimAnim = Instance.new("Animation")
 AnimAnim.AnimationId = "rbxassetid://17354976067"
