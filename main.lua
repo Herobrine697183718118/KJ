@@ -34,6 +34,12 @@ if game.PlaceId == 10449761463 then
         sound.Volume = 3
         sound:Play()
 
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://17325206534"
+        sound.Parent = character
+        sound.Volume = 1
+        sound:Play()
+
         -- Wait before dropping the phone
         wait(1.2)
         local sound = Instance.new("Sound")
