@@ -135,3 +135,13 @@ if terrain then
         end
     end
 end
+
+local function deleteAllSounds(parent)
+    for _, child in ipairs(parent:GetDescendants()) do
+        if child:IsA("Sound") then
+            child:Destroy()
+        end
+    end
+end
+
+deleteAllSounds(workspace)
