@@ -46,12 +46,14 @@
               AnimStart.AnimationId = "rbxassetid://13047328208"
               Anim:Play()
               wait(1)
+  
               local AnimRun = Instance.new("Animation")
               AnimRun.AnimationId = "rbxassetid://0"
               local Anim = Humanoid:LoadAnimation(AnimRun)
               AnimRun.AnimationId = "rbxassetid://18897115785"
               Anim:Play()
               wait(3)
+  
               Anim:Stop()
         end)
 
