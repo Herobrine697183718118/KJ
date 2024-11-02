@@ -95,7 +95,7 @@ local function playHitAnimation(target)
             humanoid.AutoRotate = false
             local startTime = tick()
 
-            while tick() - startTime < 5 do
+            while tick() - startTime < 6 do
                 humanoid.AutoRotate = false
                 task.wait()
          end
