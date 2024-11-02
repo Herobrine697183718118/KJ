@@ -86,7 +86,20 @@ local function playHitAnimation(target)
     playAnim:Play()
 
     character.Humanoid.WalkSpeed = 0
-    character.Humanoid.AutoRotate = false 
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+
+    task.spawn(function()
+            humanoid.AutoRotate = false
+            local startTime = tick()
+
+            while tick() - startTime < 5 do
+                humanoid.AutoRotate = false
+                task.wait()
+         end
+    end)
     character:WaitForChild("HumanoidRootPart").CFrame = target.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3) * CFrame.Angles(0, math.pi, 0)
 
     local targetHumanoid = target:WaitForChild("Humanoid")
