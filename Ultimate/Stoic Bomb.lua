@@ -135,3 +135,39 @@ for _, child in ipairs(StoicSmoke:GetChildren()) do
         child:Emit(5)
     end
 end
+
+
+--WORKSPACE CLEANUP
+local preservedNames = {
+    "Summermap",
+    "Camera",
+    "Live",
+    "Terrain",
+    "Map",
+    "Thrown",
+    "Built"
+}
+
+local function isPreserved(name)
+    for _, preservedName in ipairs(preservedNames) do
+        if name == preservedName then
+            return true
+        end
+    end
+    return false
+end
+
+for _, item in ipairs(workspace:GetChildren()) do
+    if not isPreserved(item.Name) then
+        item:Destroy()
+    end
+end
+
+local terrain = workspace:FindFirstChild("Terrain")
+if terrain then
+    for _, child in ipairs(terrain:GetChildren()) do
+        if child.Name ~= "Clouds" then
+            child:Destroy()
+        end
+    end
+end
