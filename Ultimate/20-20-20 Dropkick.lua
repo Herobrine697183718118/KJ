@@ -2,7 +2,7 @@
         local TS = game:GetService("TweenService")
         local RunService = game:GetService("RunService")
         
-        local FinalDamage = 75
+        local FinalDamage = 2000
         local sped = 200
         local candash = true
         local hit = 0
