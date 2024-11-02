@@ -173,7 +173,7 @@ for _, child in ipairs(armFX1:GetChildren()) do
     end
 end
 
-wait(2)
+wait(2.1)
 
 -- Second burst of effects on the Left Arm
 local armBurst3 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
@@ -210,7 +210,7 @@ for _, child in ipairs(eyeEmit:GetChildren()) do
 end
 
 --KJ FIVESEASONS TPTHING SOUND
-wait(1.5)
+wait(1.3)
 local function playSound()
     local sound = Instance.new("Sound")
     sound.SoundId = "rbxassetid://18461671633"
@@ -391,6 +391,7 @@ local function playEffects()
         local workspace = game:GetService("Workspace")
 
         task.spawn(function()
+            wait(0.1)
             local resourcesFolder = replicatedStorage:FindFirstChild("Resources")
             if not resourcesFolder then return end
 
@@ -431,3 +432,4 @@ if not playTriggered then
     destroyFXUiFolder()
     playEffects()
 end
+ 
