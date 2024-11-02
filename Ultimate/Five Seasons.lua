@@ -18,7 +18,7 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 local workspace = game:GetService("Workspace")
 
 task.spawn(function()
-    wait(1)
+    wait(1.3)
 
     local resourcesFolder = replicatedStorage:FindFirstChild("Resources")
     if not resourcesFolder then return end
@@ -147,7 +147,7 @@ end
 playSound()
 
 --START VFX
-wait(1.2)
+wait(2.6)
 -- First burst of effects on the Left Arm
 local armBurst1 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
 armBurst1.Parent = game.Players.LocalPlayer.Character["Left Arm"]
@@ -173,12 +173,7 @@ for _, child in ipairs(armFX1:GetChildren()) do
     end
 end
 
-wait(1.5)
-
--- Destroy the first set of effects
-armBurst1:Destroy()
-armBurst2:Destroy()
-armFX1:Destroy()
+wait(2)
 
 -- Second burst of effects on the Left Arm
 local armBurst3 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
@@ -205,7 +200,6 @@ for _, child in ipairs(armFX2:GetChildren()) do
     end
 end
 
-wait(1.3)
 -- Eye effect on the Head
 local eyeEmit = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].EyeEmit:Clone()
 eyeEmit.Parent = game.Players.LocalPlayer.Character["Head"]
@@ -216,7 +210,7 @@ for _, child in ipairs(eyeEmit:GetChildren()) do
 end
 
 --KJ FIVESEASONS TPTHING SOUND
-wait(2.3)
+wait(1.5)
 local function playSound()
     local sound = Instance.new("Sound")
     sound.SoundId = "rbxassetid://18461671633"
@@ -227,14 +221,16 @@ end
 
 playSound()
 
-wait(1)
+wait(2.7)
 -- Destroy the second set of effects
+armBurst1:Destroy()
+armBurst2:Destroy()
+armFX1:Destroy()
 armBurst3:Destroy()
 armBurst4:Destroy()
 armFX2:Destroy()
 
-
-wait(2)
+wait(0.1)
 -- FIVE SEASONS FINISH & EXPLOSION
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -246,7 +242,7 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player:WaitForChild("PlayerGui")
 
 local ActivateAttack = Instance.new("TextButton")
-ActivateAttack.Size = UDim2.new(0, 125, 0, 125)
+ActivateAttack.Size = UDim2.new(0, 150, 0, 150)
 ActivateAttack.Position = UDim2.new(0.5, -50, 0.5, -50)
 ActivateAttack.BackgroundTransparency = 1
 ActivateAttack.Text = ""
@@ -366,7 +362,7 @@ local function playEffects()
             fistModel:Destroy()
         end)
 
-        wait(2.2)
+        wait(2.4)
         local function playSound4()
             local sound = Instance.new("Sound")
             sound.SoundId = "rbxassetid://18462312002"
