@@ -131,6 +131,29 @@ local function playHitAnimation(target)
         wait(1)
         enableParticleEmitters(speedlinesandstuffClone)
     end)
+
+    local camera = game.Workspace.CurrentCamera
+    local TweenService = game:GetService("TweenService")
+    local shakeDuration = 1
+    local shakeMagnitude = 0.5
+
+    task.spawn(function()
+        wait(1)
+        local originalCFrame = camera.CFrame
+        local startTime = tick()
+
+        while tick() - startTime < shakeDuration do
+           local offsetX = (math.random() - 0.5) * shakeMagnitude * 2
+           local offsetY = (math.random() - 0.5) * shakeMagnitude * 2
+           local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
+           local tweenInfo = TweenInfo.new(0.05, Enum.EasingStyle.Linear)
+           local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
+           tween:Play()
+           wait(0.05)
+        end
+
+        camera.CFrame = originalCFrame
+    end)
     
     local hit1 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
     hit1.Parent = character["Left Arm"]
@@ -162,6 +185,25 @@ local function playHitAnimation(target)
     end
 
     wait(1)
+    local shakeDuration = 0.5
+    local shakeMagnitude = 0.2
+
+    task.spawn(function()
+        local originalCFrame = camera.CFrame
+        local startTime = tick()
+
+        while tick() - startTime < shakeDuration do
+           local offsetX = (math.random() - 0.5) * shakeMagnitude * 2
+           local offsetY = (math.random() - 0.5) * shakeMagnitude * 2
+           local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
+           local tweenInfo = TweenInfo.new(0.05, Enum.EasingStyle.Linear)
+           local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
+           tween:Play()
+           wait(0.05)
+        end
+
+        camera.CFrame = originalCFrame
+    end)
 
     local lastKickEffect = ReplicatedStorage.Resources.KJEffects["lastkick"].Attachment:Clone()
     lastKickEffect.Parent = character["HumanoidRootPart"]
