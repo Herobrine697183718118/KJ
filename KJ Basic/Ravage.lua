@@ -138,7 +138,9 @@ local function playHitAnimation(target)
     local kjEffectsFolder = resourcesFolder:WaitForChild("KJEffects")
     local speedlinesandstuffPart = kjEffectsFolder:WaitForChild("barrage")
     local speedlinesandstuffClone = speedlinesandstuffPart:Clone()
-    local desiredCFrame = CFrame.new(character["Left Arm"].Position)
+    local torso = character:WaitForChild("HumanoidRootPart")
+    local offset = torso.CFrame.LookVector * 2
+    local desiredCFrame = torso.CFrame + offset
     speedlinesandstuffClone.CFrame = desiredCFrame
     speedlinesandstuffClone.Parent = Workspace
     
