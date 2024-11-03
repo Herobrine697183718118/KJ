@@ -143,6 +143,10 @@ local function playHitAnimation(target)
     local desiredCFrame = torso.CFrame + offset
     speedlinesandstuffClone.CFrame = desiredCFrame
     speedlinesandstuffClone.Parent = Workspace
+
+    task.delay(2, function() 
+        speedlinesandstuffClone:Destroy() 
+    end)
     
     local function enableParticleEmitters(parent)
         for _, descendant in ipairs(parent:GetDescendants()) do
@@ -185,7 +189,7 @@ local function playHitAnimation(target)
     end)
     
     local hit1 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
-    hit1.Parent = character["Left Arm"]
+    hit1.Parent = character["HumanoidRootPart"]
     for _, child in ipairs(hit1:GetChildren()) do
         if child:IsA("ParticleEmitter") then
             child:Emit(30)
@@ -193,13 +197,12 @@ local function playHitAnimation(target)
     end
 
     wait(2)
-    workspace.barrage:Destroy()
 
     local hit2 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
-    hit2.Parent = character["Right Arm"]
+    hit2.Parent = character["HumanoidRootPart"]
     for _, child in ipairs(hit2:GetChildren()) do
         if child:IsA("ParticleEmitter") then
-            child:Emit(20)
+            child:Emit(30)
         end
     end
 
