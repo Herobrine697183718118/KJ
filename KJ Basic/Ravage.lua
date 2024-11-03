@@ -219,7 +219,7 @@ local function playHitAnimation(target)
     character.Humanoid.AutoRotate = true 
 end
 
-local proximityDetectionRadius = 5
+local proximityDetectionRadius = 6
 
 local function detectNearbyTarget()
     local closestTarget = nil
