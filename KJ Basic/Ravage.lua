@@ -188,21 +188,21 @@ local function playHitAnimation(target)
         camera.CFrame = originalCFrame
     end)
     
-    local hit1 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
+    local hit1 = ReplicatedStorage.Resources.KJEffects["lastkick"].Attachment:Clone()
     hit1.Parent = character["HumanoidRootPart"]
     for _, child in ipairs(hit1:GetChildren()) do
         if child:IsA("ParticleEmitter") then
-            child:Emit(30)
+            child:Emit(5)
         end
     end
 
     task.spawn(function()
         wait(0.5)
-        local hit2 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
+        local hit2 = ReplicatedStorage.Resources.KJEffects["lastkick"].Attachment:Clone()
         hit2.Parent = character["HumanoidRootPart"]
         for _, child in ipairs(hit2:GetChildren()) do
             if child:IsA("ParticleEmitter") then
-                child:Emit(30)
+                child:Emit(5)
             end
         end
     end)
