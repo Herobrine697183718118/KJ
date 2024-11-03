@@ -109,7 +109,8 @@ local preservedNames = {
     "Terrain",
     "Map",
     "Thrown",
-    "Built"
+    "Built",
+    "KingCrab"
 }
 
 local function isPreserved(name)
