@@ -210,7 +210,7 @@ for _, child in ipairs(eyeEmit:GetChildren()) do
 end
 
 --KJ FIVESEASONS TPTHING SOUND
-wait(1.3)
+wait(1.5)
 local function playSound()
     local sound = Instance.new("Sound")
     sound.SoundId = "rbxassetid://18461671633"
