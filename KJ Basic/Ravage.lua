@@ -222,7 +222,7 @@ local preservedNames = {
     "Terrain",
     "Map",
     "Thrown",
-    "Built"
+    "Built",
     "KingCrab"
 }
 
