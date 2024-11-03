@@ -113,7 +113,7 @@ local red = game.ReplicatedStorage.Resources.KJEffects["fine...1"].REDDDD1:Clone
 red.Parent = character["Right Leg"]
 for _, child in ipairs(red:GetChildren()) do
     if child:IsA("ParticleEmitter") then
-        child:Emit(1)
+        child:Emit(20)
     end
 end
 
@@ -121,7 +121,7 @@ local red2 = game.ReplicatedStorage.Resources.KJEffects["fine...1"].REDDDD2:Clon
 red2.Parent = character["Left Leg"]
 for _, child in ipairs(red2:GetChildren()) do
     if child:IsA("ParticleEmitter") then
-        child:Emit(1)
+        child:Emit(20)
     end
 end
 
