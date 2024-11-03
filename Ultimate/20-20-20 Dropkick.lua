@@ -1011,10 +1011,19 @@
                         local character = player.Character or player.CharacterAdded:Wait()
                         local humanoid = character:WaitForChild("Humanoid")
                         task.spawn(function()
+                            local player = game.Players.LocalPlayer
+                            local playerGui = player:WaitForChild("PlayerGui")
+                            local hotbar = playerGui:FindFirstChild("Hotbar")
+
+                            if hotbar then
+                                hotbar.Enabled = false
+                                wait(16)
+                                hotbar.Enabled = true
+                            end
                             humanoid.AutoRotate = false
                             local startTime = tick()
 
-                            while tick() - startTime < 14 do
+                            while tick() - startTime < 16 do
                                 humanoid.AutoRotate = false
                                 task.wait()
                             end
