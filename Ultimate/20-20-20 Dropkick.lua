@@ -1286,7 +1286,6 @@
             local targetName = "thespeedthingunderultik"
             for i = 1, 15 do
                 character:WaitForChild("HumanoidRootPart").Anchored = false
-            character:WaitForChild("Humanoid").AutoRotate = true
             wait(1)
             end
         -- Workspace'teki tÃƒÂ¼m objeleri dÃƒÂ¶ner
