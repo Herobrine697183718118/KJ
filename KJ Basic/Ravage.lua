@@ -196,11 +196,22 @@ local function playHitAnimation(target)
         end
     end
 
+    task.spawn(function()
+        wait(0.5)
+        local hit2 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
+        hit2.Parent = character["HumanoidRootPart"]
+        for _, child in ipairs(hit2:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(30)
+            end
+        end
+    end)
+    
     wait(2)
 
-    local hit2 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
-    hit2.Parent = character["HumanoidRootPart"]
-    for _, child in ipairs(hit2:GetChildren()) do
+    local hit3 = ReplicatedStorage.Resources.KJEffects["HitParticles"].Hit:Clone()
+    hit3.Parent = character["HumanoidRootPart"]
+    for _, child in ipairs(hit3:GetChildren()) do
         if child:IsA("ParticleEmitter") then
             child:Emit(30)
         end
