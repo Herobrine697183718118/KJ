@@ -96,8 +96,8 @@ local function playHitAnimation(target)
         local startTime = tick()
 
         while tick() - startTime < shakeDuration do
-           local offsetX = (math.random() - 0.0) * shakeMagnitude * 0.0
-           local offsetY = (math.random() - 0.0) * shakeMagnitude * 0.0
+           local offsetX = (math.random() - 1.0) * shakeMagnitude * 0.0
+           local offsetY = (math.random() - 1.0) * shakeMagnitude * 0.0
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
            local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
@@ -161,7 +161,7 @@ local function playHitAnimation(target)
  
     --2 HIT CAMERASHAKE
     local shakeDuration = 1
-    local shakeMagnitude = 1
+    local shakeMagnitude = 0.7
 
     task.spawn(function()
         wait(0.1)
@@ -176,8 +176,6 @@ local function playHitAnimation(target)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
            wait(0.03)
-           tween:Play()
-           wait(2)
            tween:Play()
         end
 
@@ -204,21 +202,21 @@ local function playHitAnimation(target)
     end)
     wait(2)
 
-    local shakeDuration = 1
-    local shakeMagnitude = 1
+    local shakeDuration = 0.7
+    local shakeMagnitude = 2
 
     task.spawn(function()
         local originalCFrame = camera.CFrame
         local startTime = tick()
 
         while tick() - startTime < shakeDuration do
-           local offsetX = (math.random() - 1.0) * shakeMagnitude * 1.0
-           local offsetY = (math.random() - 1.0) * shakeMagnitude * 1.0
+           local offsetX = (math.random() - 1.0) * shakeMagnitude * 0.0
+           local offsetY = (math.random() - 1.0) * shakeMagnitude * 0.0
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
            local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
-           wait(0.03)
+           wait(0.3)
         end
 
         camera.CFrame = originalCFrame
