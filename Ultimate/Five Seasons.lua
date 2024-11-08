@@ -9,6 +9,50 @@ local character = player.Character or player.CharacterAdded:Wait()
 local torso = character:FindFirstChild("Torso")
 local workspace = game:GetService("Workspace")
 
+--FIVE SEASONS STARTUP CUTSCENE
+task.spawn(function()
+    wait(1.2)
+    local r = game:GetService("RunService")
+    local t = game:GetService("TweenService")
+    local c = workspace.CurrentCamera
+    local h = game.Players.LocalPlayer.Character
+
+    local function s(d)
+        if not d then return end
+
+        local o = c.CFrame
+        local e = 0
+        local con
+
+        h.Humanoid.AutoRotate = false
+        c.CameraType = Enum.CameraType.Scriptable
+
+        con = r.RenderStepped:Connect(function(dt)
+            e = e + dt * 60
+            local k = d[math.ceil(e)]
+
+            if k then
+                t:Create(c, TweenInfo.new(0.0005, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                    CFrame = h.HumanoidRootPart.CFrame * k.cframe,
+                    FieldOfView = k.fov
+                }):Play()
+            else
+                con:Disconnect()
+                c.FieldOfView = 70
+                h.Humanoid.AutoRotate = true
+                c.CameraType = Enum.CameraType.Custom
+                c.CFrame = o
+            end
+        end)
+    end
+
+    local m = require(game.ReplicatedStorage.Cutscenes["Five Season Startup"])
+
+    local d = m
+    if d then
+        s(d)
+    end
+end)
 
 --START OF FIVESEASONS JUMPFX
 local player = game.Players.LocalPlayer
@@ -173,7 +217,7 @@ for _, child in ipairs(armFX1:GetChildren()) do
     end
 end
 
-wait(1.9)
+wait(2.3)
 
 -- Second burst of effects on the Left Arm
 local armBurst3 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
@@ -201,16 +245,17 @@ for _, child in ipairs(armFX2:GetChildren()) do
 end
 
 -- Eye effect on the Head
+wait(0.2)
 local eyeEmit = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].EyeEmit:Clone()
 eyeEmit.Parent = game.Players.LocalPlayer.Character["Head"]
 for _, child in ipairs(eyeEmit:GetChildren()) do
     if child:IsA("ParticleEmitter") then
-        child:Emit(45)
+        child:Emit(100)
     end
 end
 
 --KJ FIVESEASONS TPTHING SOUND
-wait(1.7)
+wait(2.5)
 local function playSound()
     local sound = Instance.new("Sound")
     sound.SoundId = "rbxassetid://18461671633"
@@ -221,16 +266,9 @@ end
 
 playSound()
 
-wait(2.5)
--- Destroy the second set of effects
-armBurst1:Destroy()
-armBurst2:Destroy()
-armFX1:Destroy()
-armBurst3:Destroy()
-armBurst4:Destroy()
-armFX2:Destroy()
+wait(3)
 
-wait(0.1)
+wait(0.6)
 -- FIVE SEASONS FINISH & EXPLOSION
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -285,64 +323,20 @@ local function playEffects()
 
         --START OF FIVE SEASONS ATTACK & TPTHING
         wait(0.7)
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local torso = character:WaitForChild("Torso")
-
-        local function findDescendant(parent, name)
-            local child = parent:FindFirstChild(name)
-            if not child then
-                for _, descendant in ipairs(parent:GetChildren()) do
-                    child = findDescendant(descendant, name)
-                    if child then
-                        break
-                    end
-                end
-            end
-            return child
-         end
-
-         local function duplicateEmitter(originalEmitter)
-             local duplicate = originalEmitter:Clone()
-             duplicate.Parent = originalEmitter.Parent
-             duplicate.Rate = 100
-             return duplicate
-         end
-
-         local replicatedStorage = game:GetService("ReplicatedStorage")
-         local resourcesFolder = replicatedStorage:WaitForChild("Resources", 2)
-         if resourcesFolder then
-             local kjEffectsFolder = resourcesFolder:FindFirstChild("KJEffects")
-             if kjEffectsFolder then
-                  local tpThingEmitter = findDescendant(kjEffectsFolder, "tpthing")
-                  if tpThingEmitter and tpThingEmitter:IsA("ParticleEmitter") then
-                       local duplicatedEmitter = duplicateEmitter(tpThingEmitter)
-                       duplicatedEmitter.Parent = torso
-                       wait(0.2)
-                       duplicatedEmitter.Rate = 0
-                  end
-             end
-        end
-        --END OF TPTHING EFFECT
-
-        local armBurst = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
-        armBurst.Parent = game.Players.LocalPlayer.Character["Right Arm"]
-        for _, child in ipairs(armBurst:GetChildren()) do
-            if child:IsA("ParticleEmitter") then
-                child:Emit(20)
-            end
-        end
-
-        task.spawn(function()
-            wait(1)
-            armBurst:Destroy()
-        end)
         
         local anim = Instance.new("Animation")
         anim.AnimationId = "rbxassetid://18462894593" 
         local playAnim = humanoid:LoadAnimation(anim) 
         anim.AnimationId = "rbxassetid://0" 
         playAnim:Play() 
+
+        -- Destroy the second set of effects
+        armBurst1:Destroy()
+        armBurst2:Destroy()
+        armFX1:Destroy()
+        armBurst3:Destroy()
+        armBurst4:Destroy()
+        armFX2:Destroy()
 
         local function playSound1()
             local sound = Instance.new("Sound")
