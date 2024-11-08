@@ -268,7 +268,7 @@ playSound()
 
 wait(3)
 
-wait(0.6)
+wait(0.1)
 -- FIVE SEASONS FINISH & EXPLOSION
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
